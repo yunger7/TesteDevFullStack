@@ -2,6 +2,8 @@ import { Outlet } from "react-router-dom";
 import { MantineProvider, ColorSchemeProvider } from "@mantine/core";
 import { useLocalStorage, useHotkeys } from "@mantine/hooks";
 
+import { theme } from "./styles/theme";
+
 import type { ColorScheme } from "@mantine/core";
 
 export const App = () => {
@@ -22,7 +24,7 @@ export const App = () => {
 			toggleColorScheme={toggleColorScheme}
 		>
 			<MantineProvider
-				theme={{ colorScheme }}
+				theme={{ ...theme, colorScheme }}
 				withGlobalStyles
 				withNormalizeCSS
 			>
