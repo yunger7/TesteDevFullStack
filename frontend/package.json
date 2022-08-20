@@ -9,6 +9,12 @@
 		"eject": "react-scripts eject"
 	},
 	"dependencies": {
+		"@emotion/react": "^11.10.0",
+		"@mantine/core": "^5.2.0",
+		"@mantine/form": "^5.2.0",
+		"@mantine/hooks": "^5.2.0",
+		"@mantine/modals": "^5.2.0",
+		"@mantine/notifications": "^5.2.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-router-dom": "^6.3.0",

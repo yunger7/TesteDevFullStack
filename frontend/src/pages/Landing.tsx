@@ -1,3 +1,5 @@
+import { Title } from "@mantine/core";
+
 export const Landing = () => {
-	return <h1>Landing page</h1>;
+	return <Title>Landing page</Title>;
 };

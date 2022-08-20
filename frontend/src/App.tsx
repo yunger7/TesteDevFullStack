@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
+import { MantineProvider } from "@mantine/core";
 
 export const App = () => {
 	return (
-		<>
-			<h1>Hello world!</h1>
+		<MantineProvider withGlobalStyles withNormalizeCSS>
 			<Outlet />
-		</>
+		</MantineProvider>
 	);
 };
