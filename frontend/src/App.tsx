@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import { MantineProvider, ColorSchemeProvider } from "@mantine/core";
 import { useLocalStorage, useHotkeys } from "@mantine/hooks";
 
+import { Layout } from "./components/Layout";
 import { theme } from "./styles/theme";
 
 import type { ColorScheme } from "@mantine/core";
@@ -28,7 +29,9 @@ export const App = () => {
 				withGlobalStyles
 				withNormalizeCSS
 			>
-				<Outlet />
+				<Layout>
+					<Outlet />
+				</Layout>
 			</MantineProvider>
 		</ColorSchemeProvider>
 	);
