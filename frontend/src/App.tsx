@@ -1,23 +1,40 @@
-import { Outlet } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 import { MantineProvider, ColorSchemeProvider } from "@mantine/core";
 import { useLocalStorage, useHotkeys } from "@mantine/hooks";
 
 import { Layout } from "./components/Layout";
+import { useAuth } from "./hooks/useAuth";
 import { theme } from "./styles/theme";
 
 import type { ColorScheme } from "@mantine/core";
 
 export const App = () => {
+	const navigate = useNavigate();
+	const { user, loading, error } = useAuth();
+
 	const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
-		key: "mantine-color-scheme",
+		key: "color-scheme",
 		defaultValue: "light",
 		getInitialValueInEffect: true,
 	});
+
+	const [authCheckComplete, setAuthCheckComplete] = useState(false);
 
 	const toggleColorScheme = (value?: ColorScheme) =>
 		setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
 
 	useHotkeys([["mod+J", () => toggleColorScheme()]]);
+
+	useEffect(() => {
+		if (!loading && !error) {
+			setAuthCheckComplete(true);
+
+			if (!user) {
+				navigate("/welcome");
+			}
+		}
+	}, [user, loading, error, navigate]);
 
 	return (
 		<ColorSchemeProvider
@@ -29,9 +46,7 @@ export const App = () => {
 				withGlobalStyles
 				withNormalizeCSS
 			>
-				<Layout>
-					<Outlet />
-				</Layout>
+				<Layout>{authCheckComplete ? <Outlet /> : null}</Layout>
 			</MantineProvider>
 		</ColorSchemeProvider>
 	);
