@@ -1,3 +1,6 @@
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+
 import {
 	Title,
 	Text,
@@ -8,11 +11,11 @@ import {
 	Anchor,
 	createStyles,
 } from "@mantine/core";
-
 import { BsGoogle as IconGoogle } from "react-icons/bs";
 import { TbPokeball as IconPokeball } from "react-icons/tb";
 
 import { PokeShowcase } from "../components/PokeShowcase";
+import { auth } from "../services/firebase";
 
 import Articuno from "../assets/articuno.png";
 import Charmander from "../assets/charmander.png";
@@ -50,8 +53,19 @@ const useStyles = createStyles(theme => ({
 	},
 }));
 
+const GoogleProvider = new GoogleAuthProvider();
+
 export const Landing = () => {
+	const navigate = useNavigate();
 	const { classes, cx } = useStyles();
+
+	async function signInWithGoogle() {
+		const credentials = await signInWithPopup(auth, GoogleProvider);
+
+		if (credentials) {
+			navigate("/");
+		}
+	}
 
 	return (
 		<Container size="xl" sx={{ height: "100%" }}>
@@ -92,7 +106,12 @@ export const Landing = () => {
 							</Anchor>{" "}
 							e pode ser encontrado no GitHub {":)"}
 						</Text>
-						<Button color="orange" mt="xs" leftIcon={<IconGoogle size={18} />}>
+						<Button
+							color="orange"
+							mt="xs"
+							leftIcon={<IconGoogle size={18} />}
+							onClick={signInWithGoogle}
+						>
 							Entrar com Google
 						</Button>
 					</Stack>
