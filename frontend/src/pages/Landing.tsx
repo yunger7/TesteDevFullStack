@@ -107,7 +107,7 @@ export const Landing = () => {
 							e pode ser encontrado no GitHub {":)"}
 						</Text>
 						<Button
-							color="orange"
+							variant="gradient"
 							mt="xs"
 							leftIcon={<IconGoogle size={18} />}
 							onClick={signInWithGoogle}
