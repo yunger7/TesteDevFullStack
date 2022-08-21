@@ -9,7 +9,13 @@ type LayoutProps = {
 
 export const Layout = ({ children }: LayoutProps) => {
 	return (
-		<AppShell padding="md" header={<Header />}>
+		<AppShell
+			padding="md"
+			header={<Header />}
+			styles={{
+				main: { padding: "var(--mantine-header-height) 0 0 0 !important" },
+			}}
+		>
 			{children}
 		</AppShell>
 	);
