@@ -11,5 +11,8 @@ build/
 .env.test.local
 .env.production.local
 
+# Firebase
+.firebase
+
 # Logs
 firebase-debug.log
