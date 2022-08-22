@@ -14,6 +14,8 @@ import {
 	Loader,
 	Center,
 	Indicator,
+	ActionIcon,
+	Tooltip,
 } from "@mantine/core";
 import {
 	TbChevronLeft as IconLeft,
@@ -26,6 +28,8 @@ import {
 	TbStar as IconSpAttack,
 	TbStars as IconSpDefense,
 	TbSword as IconAttack,
+	TbTrash as IconDelete,
+	TbEdit as IconEdit,
 } from "react-icons/tb";
 
 import { SubHeader } from "../components/SubHeader";
@@ -40,9 +44,21 @@ export const Details = () => {
 	return (
 		<>
 			<SubHeader title="Detalhes">
-				<Button component={Link} to="/" leftIcon={<IconLeft size={18} />}>
-					Voltar
-				</Button>
+				<Group>
+					<Button component={Link} to="/" leftIcon={<IconLeft size={18} />}>
+						Voltar
+					</Button>
+					<Tooltip label="Editar" position="bottom">
+						<ActionIcon variant="default" size="lg">
+							<IconEdit size={18} />
+						</ActionIcon>
+					</Tooltip>
+					<Tooltip label="Excluir" position="bottom">
+						<ActionIcon variant="default" size="lg">
+							<IconDelete size={18} />
+						</ActionIcon>
+					</Tooltip>
+				</Group>
 			</SubHeader>
 			<Container size="xl" py="xl" mt="xl">
 				{loading ? (
