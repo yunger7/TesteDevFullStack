@@ -51,8 +51,6 @@ export const EditPokemon = ({ id, pokemon }: EditPokemonProps) => {
 				}
 			);
 
-			const json = await response.json();
-
 			if (!response.ok) {
 				throw new Error("Failed to edit pokemon");
 			}
