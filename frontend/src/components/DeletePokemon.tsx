@@ -48,7 +48,6 @@ export const DeletePokemon = ({ id }: DeletePokemonProps) => {
 
 			navigate("/");
 		} catch (error) {
-			console.log(error);
 			showNotification({
 				title: "Parece que algo deu errado :(",
 				message: "Não foi possível excluir seu Pokémon",

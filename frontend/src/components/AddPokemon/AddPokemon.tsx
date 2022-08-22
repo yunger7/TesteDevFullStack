@@ -75,7 +75,6 @@ export const AddPokemon = () => {
 				navigate(`/pokemon/${id}`);
 			}
 		} catch (error) {
-			console.log(error);
 			showNotification({
 				title: "Parece que algo deu errado :(",
 				message: "Não foi possível cadasrar seu Pokémon",

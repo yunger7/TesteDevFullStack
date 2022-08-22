@@ -70,7 +70,6 @@ export const SearchPokemonModal = (props: SearchModalProps) => {
 				setData([{ value: pokemon.name, ...pokemon }]);
 				setIsValid(true);
 			} catch (error) {
-				console.log(error);
 				setIsValid(false);
 				setData([]);
 			} finally {

@@ -52,7 +52,6 @@ export const EditPokemon = ({ id, pokemon }: EditPokemonProps) => {
 			);
 
 			const json = await response.json();
-			console.log(json);
 
 			if (!response.ok) {
 				throw new Error("Failed to edit pokemon");
@@ -61,7 +60,6 @@ export const EditPokemon = ({ id, pokemon }: EditPokemonProps) => {
 			// TODO: Replace reload with a state update
 			window.location.reload();
 		} catch (error) {
-			console.log(error);
 			showNotification({
 				title: "Parece que algo deu errado :(",
 				message: "Não foi possível editar seu Pokémon",
