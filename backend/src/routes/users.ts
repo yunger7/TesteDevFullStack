@@ -8,5 +8,6 @@ const router = express.Router();
 router.use(userCredentials);
 
 router.post("/:userId/pokemons", UserController.postPokemon);
+router.get("/:userId/pokemons/:pokemonId", UserController.getPokemon);
 
 export default router;
