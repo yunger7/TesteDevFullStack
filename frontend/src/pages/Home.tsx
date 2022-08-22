@@ -45,7 +45,7 @@ export const Home = () => {
 								<Text color="dimmed" align="center">
 									{"(╯°□°）╯︵ ┻━┻"}
 									<br />
-									Wops! Não foi possível buscar seu pokémon
+									Wops! Não foi possível buscar seus pokémons
 								</Text>
 							</Center>
 						)}
