@@ -63,6 +63,10 @@ export const SearchPokemonModal = (props: SearchModalProps) => {
 
 				const pokemon = (await response.json()) as Pokemon;
 
+				if (!("name" in pokemon)) {
+					throw new Error("Pokemon not found");
+				}
+
 				setData([{ value: pokemon.name, ...pokemon }]);
 				setIsValid(true);
 			} catch (error) {
