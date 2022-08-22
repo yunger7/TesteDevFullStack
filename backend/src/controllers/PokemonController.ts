@@ -12,6 +12,17 @@ async function get(req: Request, res: Response) {
 			`${POKEAPI_BASE_PATH}/pokemon/${name}`
 		);
 
+		const formattedStats: {
+			[name: string]: { value: number; effort: number };
+		} = {};
+
+		for (const item of data.stats) {
+			formattedStats[item.stat.name] = {
+				value: item.base_stat,
+				effort: item.effort,
+			};
+		}
+
 		res.json({
 			id: data.id,
 			name: data.name,
@@ -27,11 +38,7 @@ async function get(req: Request, res: Response) {
 				front_shiny: data.sprites.front_shiny,
 				front_shiny_female: data.sprites.front_shiny_female,
 			},
-			stats: data.stats.map(item => ({
-				base_stat: item.base_stat,
-				effort: item.effort,
-				name: item.stat.name,
-			})),
+			stats: formattedStats,
 			types: data.types.map(item => item.type.name),
 		});
 	} catch (error) {
