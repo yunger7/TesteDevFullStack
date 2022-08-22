@@ -1,6 +1,8 @@
 import { db } from "../services/firebase";
 
+import type { QuerySnapshot } from "firebase-admin/firestore";
 import type { Request, Response } from "express";
+import type { Pokemon, PokemonDocument } from "../types/Pokemon";
 
 async function postPokemon(req: Request, res: Response) {
 	try {
@@ -66,7 +68,44 @@ async function getPokemon(req: Request, res: Response) {
 	}
 }
 
+type PokemonList = Array<{ docId: string } & PokemonDocument>;
+
+async function getPokemonList(req: Request, res: Response) {
+	try {
+		// TODO: Validate request
+
+		if (req.credentials?.uid !== req.params.userId) {
+			return res
+				.status(403)
+				.json({ message: "User ID does not match ID provided in params" });
+		}
+
+		const snapshot = (await db
+			.collection("users")
+			.doc(req.credentials?.uid)
+			.collection("pokemons")
+			.get()) as QuerySnapshot<PokemonDocument>;
+
+		const pokemonList: PokemonList = [];
+
+		snapshot.forEach(doc => {
+			pokemonList.push({
+				docId: doc.id,
+				...doc.data(),
+			});
+		});
+
+		return res.json({
+			message: "Pokemon list retrieved successfully",
+			data: pokemonList,
+		});
+	} catch (error) {
+		return res.status(500).json({ message: "Failed to get pokemon list" });
+	}
+}
+
 export const UserController = {
 	postPokemon,
 	getPokemon,
+	getPokemonList,
 };
