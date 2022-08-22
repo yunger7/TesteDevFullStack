@@ -45,7 +45,6 @@ export const AddPokemon = () => {
 	function reset() {
 		handleStep.reset();
 		setSelectedPokemon(undefined);
-		form.reset();
 	}
 
 	async function savePokemon() {
@@ -108,13 +107,10 @@ export const AddPokemon = () => {
 				opened={step === 2}
 				onClose={reset}
 				onButtonConfirm={() => {
-					reset();
 					savePokemon();
+					handleStep.reset();
 				}}
-				onButtonCancel={() => {
-					handleStep.decrement();
-					form.reset();
-				}}
+				onButtonCancel={() => handleStep.decrement()}
 			/>
 		</>
 	);
