@@ -1,11 +1,10 @@
 import { db } from "../services/firebase";
 
 import type { Request, Response } from "express";
-import type { PokemonInfo } from "../types/Pokemon";
 
 async function postPokemon(req: Request, res: Response) {
 	try {
-		const pokemonInfo: PokemonInfo = req.body;
+		const pokemonInfo = req.body;
 
 		// TODO: Validate request before saving to database
 

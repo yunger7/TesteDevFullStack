@@ -60,6 +60,7 @@ export const AddPokemon = () => {
 						"Content-Type": "application/json",
 					},
 					body: JSON.stringify({
+						...selectedPokemon,
 						...form.values,
 						nickname: form.values.nickname || capitalize(form.values.name),
 					}),
