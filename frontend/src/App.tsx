@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { MantineProvider, ColorSchemeProvider } from "@mantine/core";
 import { useLocalStorage, useHotkeys } from "@mantine/hooks";
+import { NotificationsProvider } from "@mantine/notifications";
 
 import { Layout } from "./components/Layout";
 import { useAuth } from "./hooks/useAuth";
@@ -46,7 +47,9 @@ export const App = () => {
 				withGlobalStyles
 				withNormalizeCSS
 			>
-				<Layout>{authCheckComplete ? <Outlet /> : null}</Layout>
+				<NotificationsProvider>
+					<Layout>{authCheckComplete ? <Outlet /> : null}</Layout>
+				</NotificationsProvider>
 			</MantineProvider>
 		</ColorSchemeProvider>
 	);
