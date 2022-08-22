@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@mantine/core";
 import { useCounter } from "@mantine/hooks";
 import { useForm } from "@mantine/form";
@@ -14,6 +15,7 @@ import { capitalize } from "../../utils/capitalize";
 import type { Pokemon, PokemonInfo } from "./types";
 
 export const AddPokemon = () => {
+	const navigate = useNavigate();
 	const { user } = useAuth();
 
 	const [step, handleStep] = useCounter(0, { min: 0, max: 2 });
@@ -67,16 +69,10 @@ export const AddPokemon = () => {
 				}
 			);
 
-			const {
-				data: { id },
-			} = await response.json();
+			const { id } = await response.json();
 
 			if (id) {
-				showNotification({
-					title: "Pronto!",
-					message: "Seu Pokémon foi cadastrado com sucesso :)",
-					color: "green",
-				});
+				navigate(`/pokemon/${id}`);
 			}
 		} catch (error) {
 			console.log(error);
