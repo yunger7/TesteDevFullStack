@@ -28,12 +28,12 @@ import {
 	TbStar as IconSpAttack,
 	TbStars as IconSpDefense,
 	TbSword as IconAttack,
-	TbTrash as IconDelete,
 	TbEdit as IconEdit,
 } from "react-icons/tb";
 
 import { SubHeader } from "../components/SubHeader";
 import { PokeStat } from "../components/PokeStat";
+import { DeletePokemon } from "../components/DeletePokemon";
 import { usePokemon } from "../hooks/usePokemon";
 import { getPokemonTypeColor } from "../utils/getPokemonTypeColor";
 
@@ -53,11 +53,7 @@ export const Details = () => {
 							<IconEdit size={18} />
 						</ActionIcon>
 					</Tooltip>
-					<Tooltip label="Excluir" position="bottom">
-						<ActionIcon variant="default" size="lg">
-							<IconDelete size={18} />
-						</ActionIcon>
-					</Tooltip>
+					<DeletePokemon id={id} />
 				</Group>
 			</SubHeader>
 			<Container size="xl" py="xl" mt="xl">
