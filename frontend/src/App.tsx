@@ -3,6 +3,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { MantineProvider, ColorSchemeProvider } from "@mantine/core";
 import { useLocalStorage, useHotkeys } from "@mantine/hooks";
 import { NotificationsProvider } from "@mantine/notifications";
+import { ModalsProvider } from "@mantine/modals";
 
 import { Layout } from "./components/Layout";
 import { useAuth } from "./hooks/useAuth";
@@ -48,7 +49,12 @@ export const App = () => {
 				withNormalizeCSS
 			>
 				<NotificationsProvider>
-					<Layout>{authCheckComplete ? <Outlet /> : null}</Layout>
+					<ModalsProvider
+						modalProps={{ centered: true }}
+						labels={{ cancel: "Cancelar", confirm: "Confirmar" }}
+					>
+						<Layout>{authCheckComplete ? <Outlet /> : null}</Layout>
+					</ModalsProvider>
 				</NotificationsProvider>
 			</MantineProvider>
 		</ColorSchemeProvider>
