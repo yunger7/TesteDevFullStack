@@ -5,6 +5,7 @@ type Pokemon = {
 	id: number;
 	name: string;
 	nickname: string;
+	nature?: string;
 	hp: number;
 	attack: number;
 	sp_attack: number;
@@ -25,10 +26,11 @@ type Pokemon = {
 		front_shiny_female?: string;
 	};
 	stats: {
-		base_stat: number;
-		effort: number;
-		name: string;
-	}[];
+		[name: string]: {
+			value: number;
+			effort: number;
+		};
+	};
 	types: string[];
 };
 
