@@ -6,7 +6,7 @@ import {
 	Text,
 	Badge,
 	Center,
-	MediaQuery,
+	Skeleton,
 } from "@mantine/core";
 import { TbPokeball as IconPokeball } from "react-icons/tb";
 
@@ -15,10 +15,14 @@ import { getPokemonTypeColor } from "../utils/getPokemonTypeColor";
 import type { PokemonDocument } from "../types/pokemon";
 
 type PokeCardProps = {
-	pokemon: PokemonDocument & { docId: string };
+	pokemon?: PokemonDocument & { docId: string };
 };
 
 export const PokeCard = ({ pokemon }: PokeCardProps) => {
+	if (!pokemon) {
+		return <Skeleton animate width="100%" height={300} />;
+	}
+
 	return (
 		<Card
 			withBorder
@@ -26,6 +30,7 @@ export const PokeCard = ({ pokemon }: PokeCardProps) => {
 			to={`/pokemon/${pokemon.docId}`}
 			sx={theme => ({
 				transition: "all 200ms ease",
+
 				"&:hover": {
 					boxShadow: theme.shadows.md,
 				},
@@ -38,19 +43,10 @@ export const PokeCard = ({ pokemon }: PokeCardProps) => {
 					src={pokemon.sprites.front_default}
 					alt={pokemon.name}
 					placeholder={<Placeholder />}
-					styles={{ image: { maxHeight: 256 } }}
+					styles={{
+						image: { maxHeight: 256 },
+					}}
 				/>
-				{/* <MediaQuery smallerThan="xs" styles={{ display: "none" }}>
-					<Image
-						withPlaceholder
-						src={pokemon.sprites.front_default}
-						alt={pokemon.name}
-						placeholder={<Placeholder />}
-					/>
-				</MediaQuery>
-				<MediaQuery largerThan="xs" styles={{ display: "none" }}>
-					
-				</MediaQuery> */}
 			</Card.Section>
 			<Group position="apart" sx={{ alignItems: "flex-start" }}>
 				<Text weight={600} size="lg">
