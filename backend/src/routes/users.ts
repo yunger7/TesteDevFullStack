@@ -10,5 +10,6 @@ router.use(userCredentials);
 router.post("/:userId/pokemons", UserController.postPokemon);
 router.get("/:userId/pokemons", UserController.getPokemonList);
 router.get("/:userId/pokemons/:pokemonId", UserController.getPokemon);
+router.delete("/:userId/pokemons/:pokemonId", UserController.deletePokemon);
 
 export default router;
