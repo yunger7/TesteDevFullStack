@@ -66,7 +66,15 @@ export const Details = () => {
 					</Center>
 				) : pokemon ? (
 					<>
-						<Group spacing={48}>
+						<Group
+							spacing={48}
+							sx={theme => ({
+								[theme.fn.smallerThan("md")]: {
+									flexDirection: "column",
+									alignItems: "stretch",
+								},
+							})}
+						>
 							<Indicator
 								inline
 								withBorder
@@ -74,7 +82,7 @@ export const Details = () => {
 								label={pokemon.nature}
 								size={24}
 								offset={8}
-								sx={{ fontWeight: 500 }}
+								sx={{ fontWeight: 500, alignSelf: "center", zIndex: 1 }}
 							>
 								<Paper p="md" shadow="md">
 									<Image
@@ -89,18 +97,43 @@ export const Details = () => {
 								</Paper>
 							</Indicator>
 							<Box sx={{ flex: 1 }}>
-								<Group spacing="xs" sx={{ alignItems: "flex-end" }}>
+								<Group
+									spacing="xs"
+									sx={theme => ({
+										alignItems: "flex-end",
+
+										[theme.fn.smallerThan("md")]: {
+											flexDirection: "column",
+											alignItems: "center",
+										},
+									})}
+								>
 									<Title>{pokemon.nickname}</Title>
 									<Text color="dimmed">Level {pokemon.level || "???"}</Text>
 								</Group>
-								<Group mt="sm" spacing="xs">
+								<Group
+									mt="sm"
+									spacing="xs"
+									sx={theme => ({
+										[theme.fn.smallerThan("md")]: {
+											justifyContent: "center",
+										},
+									})}
+								>
 									{pokemon.types.map(type => (
 										<Badge color={getPokemonTypeColor(type)} key={type}>
 											{type}
 										</Badge>
 									))}
 								</Group>
-								<SimpleGrid cols={3} mt="xl">
+								<SimpleGrid
+									cols={3}
+									mt="xl"
+									breakpoints={[
+										{ maxWidth: "sm", cols: 2 },
+										{ maxWidth: "xs", cols: 1 },
+									]}
+								>
 									<PokeStat
 										withColor
 										name="Health"
@@ -141,10 +174,25 @@ export const Details = () => {
 							</Box>
 						</Group>
 						<Box my="xl">
-							<Title order={2} mb="lg">
+							<Title
+								order={2}
+								mb="lg"
+								sx={theme => ({
+									[theme.fn.smallerThan("md")]: {
+										textAlign: "center",
+									},
+								})}
+							>
 								Estatísticas
 							</Title>
-							<SimpleGrid cols={4}>
+							<SimpleGrid
+								cols={4}
+								breakpoints={[
+									{ maxWidth: "md", cols: 3 },
+									{ maxWidth: "sm", cols: 2 },
+									{ maxWidth: "xs", cols: 1 },
+								]}
+							>
 								<PokeStat
 									name="Weight"
 									value={`${pokemon.weight / 10} Kg`}
@@ -188,41 +236,72 @@ export const Details = () => {
 							</SimpleGrid>
 						</Box>
 						<Box my="xl">
-							<Title order={2} mb="lg">
+							<Title
+								order={2}
+								mb="lg"
+								sx={theme => ({
+									[theme.fn.smallerThan("md")]: {
+										textAlign: "center",
+									},
+								})}
+							>
 								Aparência
 							</Title>
-							<SimpleGrid cols={4}>
+							<SimpleGrid
+								cols={4}
+								breakpoints={[
+									{ maxWidth: "md", cols: 3 },
+									{ maxWidth: "sm", cols: 2 },
+									{ maxWidth: "xs", cols: 1 },
+								]}
+							>
 								<Image
 									withPlaceholder
+									fit="contain"
 									src={pokemon?.sprites.front_default}
 									alt={pokemon?.name}
 									caption="Frente (comum)"
 									placeholder={<Placeholder />}
-									styles={{ placeholder: { minHeight: 300 } }}
+									styles={{
+										placeholder: { minHeight: 300 },
+										image: { maxHeight: 256 },
+									}}
 								/>
 								<Image
 									withPlaceholder
+									fit="contain"
 									src={pokemon?.sprites.back_default}
 									alt={pokemon?.name}
 									caption="Traseira (comum)"
 									placeholder={<Placeholder />}
-									styles={{ placeholder: { minHeight: 300 } }}
+									styles={{
+										placeholder: { minHeight: 300 },
+										image: { maxHeight: 256 },
+									}}
 								/>
 								<Image
 									withPlaceholder
+									fit="contain"
 									src={pokemon?.sprites.front_shiny}
 									alt={pokemon?.name}
 									caption="Traseira (shiny)"
 									placeholder={<Placeholder />}
-									styles={{ placeholder: { minHeight: 300 } }}
+									styles={{
+										placeholder: { minHeight: 300 },
+										image: { maxHeight: 256 },
+									}}
 								/>
 								<Image
 									withPlaceholder
+									fit="contain"
 									src={pokemon?.sprites.back_shiny}
 									alt={pokemon?.name}
 									caption="Traseira (shiny)"
 									placeholder={<Placeholder />}
-									styles={{ placeholder: { minHeight: 300 } }}
+									styles={{
+										placeholder: { minHeight: 300 },
+										image: { maxHeight: 256 },
+									}}
 								/>
 							</SimpleGrid>
 						</Box>
