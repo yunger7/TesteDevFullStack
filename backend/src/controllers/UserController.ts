@@ -104,8 +104,34 @@ async function getPokemonList(req: Request, res: Response) {
 	}
 }
 
+async function deletePokemon(req: Request, res: Response) {
+	try {
+		// TODO: Validate request
+
+		if (req.credentials?.uid !== req.params.userId) {
+			return res
+				.status(403)
+				.json({ message: "User ID does not match ID provided in params" });
+		}
+
+		await db
+			.collection("users")
+			.doc(req.credentials?.uid)
+			.collection("pokemons")
+			.doc(req.params.pokemonId)
+			.delete();
+
+		return res.json({
+			message: "Pokemon deleted successfully",
+		});
+	} catch (error) {
+		return res.status(500).json({ message: "Failed to delete pokemon" });
+	}
+}
+
 export const UserController = {
 	postPokemon,
 	getPokemon,
 	getPokemonList,
+	deletePokemon,
 };
