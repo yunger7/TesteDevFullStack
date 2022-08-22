@@ -15,11 +15,12 @@ export type Pokemon = {
 		front_shiny_female?: string;
 	};
 	stats: {
-		base_stat: number;
-		effort: number;
-		stat: { name: string; url: string };
-	}[];
-	types: { slot: number; type: { name: string; url: string } }[];
+		[name: string]: {
+			value: number;
+			effort: number;
+		};
+	};
+	types: string[];
 };
 
 /* User's pokemon information */
