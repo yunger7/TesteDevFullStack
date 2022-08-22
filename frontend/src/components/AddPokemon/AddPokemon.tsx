@@ -12,7 +12,7 @@ import { PokemonInfoModal } from "./PokemonInfoModal";
 import { useAuth } from "../../hooks/useAuth";
 import { capitalize } from "../../utils/capitalize";
 
-import type { Pokemon, PokemonInfo } from "./types";
+import type { Pokemon, PokemonInfo } from "../../types/pokemon";
 
 export const AddPokemon = () => {
 	const navigate = useNavigate();

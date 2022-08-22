@@ -20,7 +20,7 @@ import { capitalize } from "../../utils/capitalize";
 import { getPokemonTypeColor } from "../../utils/getPokemonTypeColor";
 
 import type { SelectItemProps } from "@mantine/core";
-import type { Pokemon } from "./types";
+import type { Pokemon } from "../../types/pokemon";
 
 type PokemonData = Pokemon & {
 	value: string;

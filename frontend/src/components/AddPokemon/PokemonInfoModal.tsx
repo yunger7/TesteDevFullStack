@@ -14,7 +14,7 @@ import { TbPokeball as IconPokeball } from "react-icons/tb";
 import { POKEMON_NATURES } from "../../utils/PokemonNatures";
 
 import type { UseFormReturnType } from "@mantine/form";
-import type { Pokemon, PokemonInfo } from "./types";
+import type { Pokemon, PokemonInfo } from "../../types/pokemon";
 
 type PokemonInfoModalProps = {
 	opened: boolean;
