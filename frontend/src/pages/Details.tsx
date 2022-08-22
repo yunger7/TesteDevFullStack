@@ -14,8 +14,6 @@ import {
 	Loader,
 	Center,
 	Indicator,
-	ActionIcon,
-	Tooltip,
 } from "@mantine/core";
 import {
 	TbChevronLeft as IconLeft,
@@ -28,12 +26,12 @@ import {
 	TbStar as IconSpAttack,
 	TbStars as IconSpDefense,
 	TbSword as IconAttack,
-	TbEdit as IconEdit,
 } from "react-icons/tb";
 
 import { SubHeader } from "../components/SubHeader";
 import { PokeStat } from "../components/PokeStat";
 import { DeletePokemon } from "../components/DeletePokemon";
+import { EditPokemon } from "../components/EditPokemon";
 import { usePokemon } from "../hooks/usePokemon";
 import { getPokemonTypeColor } from "../utils/getPokemonTypeColor";
 
@@ -45,15 +43,17 @@ export const Details = () => {
 		<>
 			<SubHeader title="Detalhes">
 				<Group>
-					<Button component={Link} to="/" leftIcon={<IconLeft size={18} />}>
-						Voltar
-					</Button>
-					<Tooltip label="Editar" position="bottom">
-						<ActionIcon variant="default" size="lg">
-							<IconEdit size={18} />
-						</ActionIcon>
-					</Tooltip>
-					<DeletePokemon id={id} />
+					<>
+						<Button component={Link} to="/" leftIcon={<IconLeft size={18} />}>
+							Voltar
+						</Button>
+						{pokemon && (
+							<>
+								<EditPokemon id={id} pokemon={pokemon} />
+								<DeletePokemon id={id} />
+							</>
+						)}
+					</>
 				</Group>
 			</SubHeader>
 			<Container size="xl" py="xl" mt="xl">
