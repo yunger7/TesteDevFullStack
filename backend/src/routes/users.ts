@@ -7,9 +7,10 @@ const router = express.Router();
 
 router.use(userCredentials);
 
-router.post("/:userId/pokemons", UserController.postPokemon);
 router.get("/:userId/pokemons", UserController.getPokemonList);
 router.get("/:userId/pokemons/:pokemonId", UserController.getPokemon);
+router.post("/:userId/pokemons", UserController.postPokemon);
 router.delete("/:userId/pokemons/:pokemonId", UserController.deletePokemon);
+router.put("/:userId/pokemons/:pokemonId", UserController.editPokemon);
 
 export default router;
