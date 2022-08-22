@@ -2,16 +2,20 @@ import { useState } from "react";
 import { Button } from "@mantine/core";
 import { useCounter } from "@mantine/hooks";
 import { useForm } from "@mantine/form";
+import { showNotification } from "@mantine/notifications";
 import { TbPlus as IconAdd } from "react-icons/tb";
 
 import { SearchPokemonModal } from "./SearchPokemonModal";
 import { PokemonInfoModal } from "./PokemonInfoModal";
 
+import { useAuth } from "../../hooks/useAuth";
 import { capitalize } from "../../utils/capitalize";
 
 import type { Pokemon, PokemonInfo } from "./types";
 
 export const AddPokemon = () => {
+	const { user } = useAuth();
+
 	const [step, handleStep] = useCounter(0, { min: 0, max: 2 });
 	const [selectedPokemon, setSelectedPokemon] = useState<Pokemon>();
 
@@ -44,9 +48,44 @@ export const AddPokemon = () => {
 		form.reset();
 	}
 
-	function savePokemon() {
-		console.log(form.values);
-		// TODO: Make POST request to backend
+	async function savePokemon() {
+		try {
+			const token = await user?.getIdToken();
+
+			const response = await fetch(
+				`${process.env["REACT_APP_API_BASE_PATH"]}/users/${user?.uid}/pokemons`,
+				{
+					method: "POST",
+					headers: {
+						Authorization: `Bearer ${token}`,
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						...form.values,
+						nickname: form.values.nickname || capitalize(form.values.name),
+					}),
+				}
+			);
+
+			const {
+				data: { id },
+			} = await response.json();
+
+			if (id) {
+				showNotification({
+					title: "Pronto!",
+					message: "Seu Pokémon foi cadastrado com sucesso :)",
+					color: "green",
+				});
+			}
+		} catch (error) {
+			console.log(error);
+			showNotification({
+				title: "Parece que algo deu errado :(",
+				message: "Não foi possível cadasrar seu Pokémon",
+				color: "red",
+			});
+		}
 	}
 
 	return (
