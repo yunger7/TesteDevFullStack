@@ -18,7 +18,7 @@ root.render(
 					<Route index element={<Home />} />
 					<Route path="welcome" element={<Landing />} />
 					<Route path="pokemon">
-						<Route path=":name" element={<Details />} />
+						<Route path=":id" element={<Details />} />
 					</Route>
 				</Route>
 			</Routes>
