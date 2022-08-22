@@ -22,8 +22,8 @@ async function postPokemon(req: Request, res: Response) {
 
 		return res.json({
 			message: "Pokemon added successfully",
+			id: document.id,
 			data: {
-				id: document.id,
 				...pokemonInfo,
 			},
 		});
