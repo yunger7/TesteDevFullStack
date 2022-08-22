@@ -25,7 +25,14 @@ export const Home = () => {
 				) : pokemons ? (
 					<>
 						{pokemons.length ? (
-							<SimpleGrid cols={4}>
+							<SimpleGrid
+								cols={4}
+								breakpoints={[
+									{ maxWidth: "md", cols: 3 },
+									{ maxWidth: "sm", cols: 2 },
+									{ maxWidth: "xs", cols: 1 },
+								]}
+							>
 								{pokemons.map((pokemon, i) => (
 									<PokeCard pokemon={pokemon} key={i} />
 								))}

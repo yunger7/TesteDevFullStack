@@ -1,5 +1,13 @@
 import { Link } from "react-router-dom";
-import { Card, Image, Group, Text, Badge, Center } from "@mantine/core";
+import {
+	Card,
+	Image,
+	Group,
+	Text,
+	Badge,
+	Center,
+	MediaQuery,
+} from "@mantine/core";
 import { TbPokeball as IconPokeball } from "react-icons/tb";
 
 import { getPokemonTypeColor } from "../utils/getPokemonTypeColor";
@@ -26,10 +34,23 @@ export const PokeCard = ({ pokemon }: PokeCardProps) => {
 			<Card.Section>
 				<Image
 					withPlaceholder
+					fit="contain"
 					src={pokemon.sprites.front_default}
 					alt={pokemon.name}
 					placeholder={<Placeholder />}
+					styles={{ image: { maxHeight: 256 } }}
 				/>
+				{/* <MediaQuery smallerThan="xs" styles={{ display: "none" }}>
+					<Image
+						withPlaceholder
+						src={pokemon.sprites.front_default}
+						alt={pokemon.name}
+						placeholder={<Placeholder />}
+					/>
+				</MediaQuery>
+				<MediaQuery largerThan="xs" styles={{ display: "none" }}>
+					
+				</MediaQuery> */}
 			</Card.Section>
 			<Group position="apart" sx={{ alignItems: "flex-start" }}>
 				<Text weight={600} size="lg">
