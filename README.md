@@ -51,4 +51,4 @@ Licenciado sob a Licença MIT. Consulte `LICENSE` para mais detalhes.
 
 <hr /><br />
 
-<p align="center">Feito com ☕ and TypeScript <br/> por <a href="https://luisgalete.com.br/">Luís Galete</a></p>
+<p align="center">Feito com ☕ e TypeScript <br/> por <a href="https://luisgalete.com.br/">Luís Galete</a></p>
